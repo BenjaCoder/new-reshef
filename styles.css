@@ -1,0 +1,104 @@
+/* #field {
+    display: flex;
+    flex-direction: column;
+
+} */
+
+#total-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#info-container {
+    width: 25%;
+    height: 97vh;
+    border: 2px solid orange;
+}
+
+#game-container {
+    border: 2px solid violet;
+    width: 73%;
+    height: 97vh;
+}
+
+.half-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50%;
+}
+
+.field-container {
+    border: 2px solid red;
+    height: 34vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.mzone-container {
+    border: 2px solid blue;
+    width: 99%;
+    height: 17vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5px;
+}
+
+.mzone {
+    /* border: 2px solid orange; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+    height: 13vh;
+}
+
+.stzone-container {
+    border: 2px solid green;
+    width: 99%;
+    height: 17vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5px;
+}
+
+.stzone {
+    border: 2px solid orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+    height: 13vh;
+}
+
+.hand-container {
+    border: 2px solid gold;
+    width: 99%;
+    height: 16vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5px;
+}
+
+.hand-zone {
+    border: 2px solid orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+    height: 10vh;
+}
+
+img {
+    height: 95%;
+}
+
+.rotate {
+    transform: rotate(270deg);
+}
