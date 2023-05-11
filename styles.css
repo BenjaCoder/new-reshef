@@ -4,9 +4,15 @@
 
 } */
 
+@font-face {
+    font-family: MatrixRegular;
+    src: url("MatrixRegularSmallCaps_Regular.ttf");
+}
+
 #total-container {
-    width: 100%;
+    width: 80vw;
     height: 100%;
+    margin: auto;
     display: flex;
     justify-content: space-around;
 }
@@ -18,38 +24,42 @@
 }
 
 #game-container {
-    border: 2px solid violet;
+    border: 2px solid purple;
     width: 73%;
     height: 97vh;
+}
+
+#game-container img {
+    height: 100%;
 }
 
 .half-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
     height: 50%;
 }
 
 .field-container {
-    border: 2px solid red;
+    /* border: 2px solid red; */
     height: 34vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .mzone-container {
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     width: 99%;
     height: 17vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 5px;
+    margin: 5px auto;
 }
 
 .mzone {
-    /* border: 2px solid orange; */
+    border: 2px solid orange;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,17 +68,20 @@
 }
 
 .stzone-container {
-    border: 2px solid green;
+    /* border: 2px solid green; */
     width: 99%;
     height: 17vh;
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    margin: 5px;
+    align-items: start;
+    margin: 5px auto;
 }
 
 .stzone {
-    border: 2px solid orange;
+    /* border: 2px solid orange; */
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(44, 212, 44) rgb(44, 212, 44) violet violet;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,29 +89,146 @@
     height: 13vh;
 }
 
+/* .stzone:nth-of-type(2n) {
+    border: 2px solid violet;
+}
+
+.stzone:nth-of-type(2n+1) {
+    border: 2px solid rgb(44, 212, 44);
+} */
+
 .hand-container {
-    border: 2px solid gold;
+    /* border: 2px solid gold; */
     width: 99%;
     height: 16vh;
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    margin: 5px;
+    align-items: end;
+    margin: 5px auto 0;
 }
 
 .hand-zone {
-    border: 2px solid orange;
+    /* border: 2px solid orange; */
     display: flex;
     justify-content: center;
     align-items: center;
     width: 10vw;
-    height: 10vh;
-}
-
-img {
-    height: 95%;
+    height: 13vh;
 }
 
 .rotate {
     transform: rotate(270deg);
+}
+
+#info-image {
+    display: flex;
+    justify-content: center;
+    margin-top: 1vh;
+}
+
+#info-image img {
+    width: 95%;
+}
+
+.selected-card {
+    border: 5px  red;
+    border-style: dashed;
+    box-sizing: border-box;
+}
+
+#info-text p {
+    margin: 5px;
+    text-align: center;
+}
+
+#info-text-cardname {
+    font-weight: bold;
+    font-size: 160%;
+    font-family: MatrixRegular, sans-serif;
+}
+
+.info-text-cardframe-normal {
+    background-color: gold;
+    padding: 2px 4px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 80%;
+}
+
+.info-text-cardframe-effect {
+    background-color: #ffa500;
+    padding: 2px 4px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 80%;
+}
+
+#info-lore {
+    width: 95%;
+    margin: auto;  
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 105%;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 2px 4px
+}
+
+#info-lore div {
+    width: 49%;
+}
+
+#info-lore hr {
+    margin-right: 3px;
+    opacity: 80%;
+}
+
+.modal {
+    position: absolute;
+    top: 20%;
+    left: 34%;
+    width: 52.5vw;
+    height: 55vh;
+    border: 3px solid red;
+    background-color: white;;
+}
+
+.hide-this {
+    visibility: hidden;
+}
+
+#graveyard-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.graveyard-half {
+    border: 1px solid blue;
+    height: 27.5vh;
+    margin: auto 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.graveyard-slot {
+    width: 10vw;
+    height: 23vh;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+}
+
+.card-options-modal {
+    position: absolute;
+    top: 20%;
+    left: 34%;
+    width: 52.5vw;
+    height: 55vh;
+    border: 3px solid red;
+    background-color: white;;
 }

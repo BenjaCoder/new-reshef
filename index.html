@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>New Reshef</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
+    <script src="cardList.js" type="module"></script>
 </head>
 <body>
     <div id="total-container">
-        <div id="info-container"></div>
+        <div id="info-container">
+            <div id="info-image"></div>
+            <div id="info-text"></div>
+        </div>
         <div id="game-container">
             <div class="half-container" id="opponent-half">
                 <div class="hand-container" id="opponent-hand">
@@ -40,26 +44,48 @@
             <div class="half-container" id="player-half">
                 <div class="field-container" id="player-field">
                     <div class="mzone-container" id="player-mzones">
-                        <div class="mzone" id="player-mzone5"></div>
-                        <div class="mzone" id="player-mzone4"></div>
-                        <div class="mzone" id="player-mzone3"></div>
-                        <div class="mzone" id="player-mzone2"></div>
                         <div class="mzone" id="player-mzone1"></div>
+                        <div class="mzone" id="player-mzone2"></div>
+                        <div class="mzone" id="player-mzone3"></div>
+                        <div class="mzone" id="player-mzone4"></div>
+                        <div class="mzone" id="player-mzone5"></div>
                     </div>
                     <div class="stzone-container" id="player-stzones">
-                        <div class="stzone" id="player-stzone5"></div>
-                        <div class="stzone" id="player-stzone4"></div>
-                        <div class="stzone" id="player-stzone3"></div>
-                        <div class="stzone" id="player-stzone2"></div>
                         <div class="stzone" id="player-stzone1"></div>
+                        <div class="stzone" id="player-stzone2"></div>
+                        <div class="stzone" id="player-stzone3"></div>
+                        <div class="stzone" id="player-stzone4"></div>
+                        <div class="stzone" id="player-stzone5"></div>
                     </div>
                 </div>
                 <div class="hand-container" id="player-hand">
-                    <div class="hand-zone" id="player-hand5"></div>
-                    <div class="hand-zone" id="player-hand4"></div>
-                    <div class="hand-zone" id="player-hand3"></div>
-                    <div class="hand-zone" id="player-hand2"></div>
                     <div class="hand-zone" id="player-hand1"></div>
+                    <div class="hand-zone" id="player-hand2"></div>
+                    <div class="hand-zone" id="player-hand3"></div>
+                    <div class="hand-zone" id="player-hand4"></div>
+                    <div class="hand-zone" id="player-hand5"></div>
+                </div>
+            </div>
+            <div class="modal hide-this" id="graveyard-container">
+                <div class="graveyard-half" id="opponent-graveyard-container">
+                    <div class="graveyard-slot" id="opponent-graveyard-monster"></div>
+                    <div class="graveyard-slot" id="opponent-graveyard-spell"></div>
+                    <div class="graveyard-slot" id="opponent-graveyard-trap"></div>
+                </div>
+                <div class="graveyard-half" id="player-graveyard-container">
+                    <div class="graveyard-slot" id="player-graveyard-monster"></div>
+                    <div class="graveyard-slot" id="player-graveyard-monster"></div>
+                    <div class="graveyard-slot" id="player-graveyard-monster"></div>
+                </div>
+            </div>
+            <div class="card-options-modal hide-this" id="card-options-modal">
+                <div>
+                    <button class="card-options-button" id="card-options-attack">Attack</button>
+                    <button class="card-options-button" id="card-options-defend">Defend</button>
+                </div>
+                <div>
+                    <button class="card-options-button" id="card-options-tribute">Tribute</button>
+                    <button class="card-options-button" id="card-options-effect">Effect</button>
                 </div>
             </div>
         </div>
