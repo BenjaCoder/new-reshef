@@ -1,3 +1,4 @@
+
 const frame = {
     Effect: "Effect",
     Fusion: "Fusion",
@@ -9,23 +10,52 @@ const frame = {
 
 const attribute = {
     DARK: "DARK",
+    DIVINE: "DIVINE",
+    DREAMS: "DREAMS",
     EARTH: "EARTH",
     FIEND: "FIEND",
+    FIRE: "FIRE",
     FOREST: "FOREST",
     LIGHT: "LIGHT",
     THUNDER: "THUNDER",
+    WATER: "WATER",
     WIND: "WIND"
 }
 
 const race = {
+    Aqua: "Aqua",
+    Beast: "Beast",
     BeastWarrior: "Beast-Warrior",
     Dinosaur: "Dinosaur",
-    Dragon: "Dragon",
+    Dragon: "Dragon",    
+    Fairy: "Fairy",
     Fiend: "Fiend",
+    Fish: "Fish",
+    Insect: "Insect",
+    Machine: "Machine",
     Plant: "Plant",
+    Pyro: "Pyro",
+    Reptile: "Reptile",
+    Rock: "Rock",
+    SeaSerpent: "Sea Serpent",
     Spellcaster: "Spellcaster",
+    Thunder: "Thunder",
     Warrior: "Warrior",
+    WingedBeast: "Winged Beast",
     Zombie: "Zombie"
+}
+
+const ability = {
+    Flip: "Flip",
+    Spirit: "Spirit",
+    Toon: "Toon",
+    Union: "Union"
+}
+
+const typest = {
+    Continuous: "Continuous",
+    Equip: "Equip",
+    Normal: "Normal",
 }
 
 export const cardList = [
@@ -225,6 +255,26 @@ export const cardList = [
         passcode: 18246479,
         imgSrc: "images/monsters/BattleSteer.png"
     },
+    {
+        id: 301,
+        name: "Legendary Sword",
+        frame: frame.Spell,
+        typest: typest.Equip,
+        dc: 100,
+        lore: ["An enchanted sword that can draw out the powers of a warrior.", "It cannot be used by those aligned with darkness."],
+        passcode: 61854111,
+        imgSrc: "images/spells/LegendarySword.png"
+    },
+    {
+        id: 789,
+        name: "Pot of Greed",
+        frame: frame.Spell,
+        typest: typest.Normal,
+        dc: 150,
+        lore: ["A card that allows the player to draw cards from the deck.", "Up to two cards may be drawn if there is room in the hand."],
+        passcode: 55144522,
+        imgSrc: "images/spells/PotofGreed.png",
+    }
 
     /******
 

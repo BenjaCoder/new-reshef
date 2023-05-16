@@ -9,10 +9,13 @@ window.onload = () => {
     const playerSpellTrapZones = document.getElementById("player-stzones");
     const playerHandZones = document.getElementById("player-hand");
     let playerGraveyard = {monster: "", spell: "", trap: ""};
+    let focusedCard = document.querySelector("#player-mzone1");
+    focusedCard.classList.add("selected-card");
 
     ///
 
     let myDeck = [];
+    cardList.forEach(i => myDeck.push(i));
     cardList.forEach(i => myDeck.push(i));
 
     function shuffleDeck(deck) {
@@ -24,19 +27,19 @@ window.onload = () => {
             deck[b] = temp;
         }
     }
-    shuffleDeck(myDeck)
+    shuffleDeck(myDeck);
 
     function draw1CardFromDeck(myDeck) {
         if (myDeck.length < 1) return;
         for (let i = 0; i < playerHandZones.childElementCount; i++) {
             let handZone = playerHandZones.children[i];
             if (!handZone.hasChildNodes()) {
-                let index = Math.floor(Math.random() * cardList.length);
                 let drawnCard = myDeck.pop();
                 console.log(myDeck);
                 console.log(drawnCard);
                 let img = createCardImageFromObject(drawnCard);
                 handZone.append(img);
+                img.dataset.location = "hand"
                 return;
             }
         }
@@ -53,9 +56,6 @@ window.onload = () => {
             infoImage.append(image);
         });
     });
-
-    let focusedCard = document.querySelector("#player-mzone1");
-    focusedCard.classList.add("selected-card");
 
     window.addEventListener("keydown", (e) => {
         const downAreas = ["player-mzone", "player-stzone", "player-hand"];
@@ -88,12 +88,17 @@ window.onload = () => {
                 break;
             case "Z":
             case "z":
-                if (focusedCard.hasChildNodes()) showActiveModal();
+                if (focusedCard.hasChildNodes()) {
+                    if (focusedCard.children[0].dataset.location == "hand") {
+                        focusedCard.classList.remove("selected-card")
+                        document.querySelector("#player-mzone1").classList.add("selected-card")
+                    }
+                    //showActiveModal();
+                }
                 break;
             case "R":
             case "r":
-                sendToGraveyard(focusedCard.children[0])
-                focusedCard.innerHTML = ""
+                if (focusedCard.hasChildNodes()) sendToGraveyard(focusedCard.children[0])
         }
     })
 
@@ -136,22 +141,26 @@ window.onload = () => {
     }
 
     function updateInfoTextOnArrowMovement(cardZone) {
-        const infoText = document.querySelector("#info-text");
-        infoText.innerHTML = ""
+        document.querySelector("#info-text").innerHTML = "";
         if (cardZone.hasChildNodes()) {
             let card = cardZone.children[0];
-            infoText.innerHTML = `
-            <p id="info-text-cardname">${card.dataset.name}</p>
-            <p><span class="info-text-cardframe-${card.dataset.frame.toLowerCase()}">${card.dataset.frame}</span> - Lvl ${card.dataset.level}</p>
-            <p>${card.dataset.race} | ${card.dataset.attribute}</p>
-            <p>ATK ${card.dataset.currentatk} / DEF ${card.dataset.currentdef}</p>
-            <div id="info-lore">
-                <div>${card.dataset.lore1}</div>
-                <hr />
-                <div>${card.dataset.lore2}</div>
-            </div>
-            `
+            updateInfoText(card);
         }
+    }
+
+    function updateInfoText(card) {
+        const infoText = document.querySelector("#info-text");
+        infoText.innerHTML = `
+        <p id="info-text-cardname">${card.dataset.name}</p>
+        <p><span class="info-text-cardframe-${card.dataset.frame.toLowerCase()}">${card.dataset.frame}</span> - Lvl ${card.dataset.level}</p>
+        <p>${card.dataset.race} | ${card.dataset.attribute}</p>
+        <p>ATK ${card.dataset.currentatk} / DEF ${card.dataset.currentdef}</p>
+        <div id="info-lore">
+            <div>${card.dataset.lore1}</div>
+            <hr />
+            <div>${card.dataset.lore2}</div>
+        </div>
+        `
     }
 
     function createCardImageFromObject(cardObj) {
@@ -169,6 +178,9 @@ window.onload = () => {
         img.dataset.currentdef = cardObj.originalDEF;
         img.dataset.lore1 = cardObj.lore[0];
         img.dataset.lore2 = cardObj.lore[1];
+        if (cardObj.effect) {
+            console.log("has effect")
+        }
         img.addEventListener("click", () => {
             sendToGraveyard(img)
             console.log(playerGraveyard)
@@ -179,36 +191,30 @@ window.onload = () => {
             let image = document.createElement("img");
             image.src = img.src;
             infoImage.append(image);
-
-            const infoText = document.querySelector("#info-text");
-            infoText.innerHTML = `
-            <p id="info-text-cardname">${img.dataset.name}</p>
-            <p><span class="info-text-cardframe-${img.dataset.frame.toLowerCase()}">${img.dataset.frame}</span> - Lvl ${img.dataset.level}</p>
-            <p>${img.dataset.race} | ${img.dataset.attribute}</p>
-            <p>ATK ${img.dataset.currentatk} / DEF ${img.dataset.currentdef}</p>
-            <div id="info-lore">
-                <div>${img.dataset.lore1}</div>
-                <hr />
-                <div>${img.dataset.lore2}</div>
-            </div>
-            `
+            updateInfoText(img);
         })
         return img;
     }
 
     function sendToGraveyard(cardImage) {
         cardImage.parentElement.innerHTML = "";
+        cardImage.dataset.location = "graveyard"
         if (cardImage.dataset.frame == "Spell") {
             playerGraveyard.spell = cardImage;
+            document.getElementById("player-graveyard-spell").innerHTML = "";
+            document.getElementById("player-graveyard-spell").append(cardImage)
         }
         else if (cardImage.dataset.frame == "Trap") {
             playerGraveyard.trap = cardImage;
+            document.getElementById("player-graveyard-trap").innerHTML = "";
+            document.getElementById("player-graveyard-trap").append(cardImage)
         }
         else {
             playerGraveyard.monster = cardImage;
             document.getElementById("player-graveyard-monster").innerHTML = "";
             document.getElementById("player-graveyard-monster").append(cardImage)
         }
+        console.log(playerGraveyard)
     }
 
     let showGraveyard = false;
@@ -219,7 +225,6 @@ window.onload = () => {
         else
             document.getElementById("graveyard-container").classList.add("hide-this")
     }
-    //showGraveyards()
 
     let activeModalShowing = false;
     function showActiveModal() {

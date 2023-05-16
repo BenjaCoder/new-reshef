@@ -36,7 +36,7 @@
 .half-container {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: space-around;
     height: 50%;
 }
 
@@ -45,7 +45,7 @@
     height: 34vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .mzone-container {
@@ -73,8 +73,15 @@
     height: 17vh;
     display: flex;
     justify-content: space-around;
-    align-items: start;
+    /* align-items: center; */
     margin: 5px auto;
+}
+
+#opponent-stzones {
+    align-items: end;
+}
+#player-stzones {
+    align-items: start;
 }
 
 .stzone {
